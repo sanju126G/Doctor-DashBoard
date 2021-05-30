@@ -1,0 +1,120 @@
+<nav class="navbar sticky-md-top navbar-expand-lg navbar-light fw-bolder m-2 border border-light shadow-lg rounded-2 bg-info">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">{{pName}}</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <form class="d-flex float-end">
+            <img [src]="pUrl" alt="Andrew" class="border border-light rounded-circle" height="70px" width="100px">
+        </form>
+    </div>
+</nav>
+
+<div class="container-fluid  mt-3 row " style="min-height: 400px;">
+    <div class="col-md-4 bg-info text-light border border-info gray-gradient shadow-lg rounded-2">
+        <form class="example-form">
+            <mat-form-field class="example-full-width">
+                <mat-label class="text-light">Search Patients</mat-label>
+                <input type="text" aria-label="Number" matInput [formControl]="myControl" [matAutocomplete]="auto">
+                <mat-icon matSuffix>search</mat-icon>
+                <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <!-- <mat-option *ngFor="let option of filteredOptions | async" [value]="option" class="mt-2">
+                        <span *ngFor="let doc of docsArray;let i=index">
+                                <span *ngIf="doc.name == option"><img [src]="doc.imageUrl" alt="Andrew" class="border border-light me-2 rounded-pill" height="30px" width="40px"></span>
+                        </span>
+                        {{option}}
+                    </mat-option> -->
+                </mat-autocomplete>
+                <!-- <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <ul class="list-unstyled">
+                        <li class="p-1" *ngFor="let option of filteredOptions | async" [value]="option">
+                            <span *ngFor="let doc of docsArray;let i=index">
+                                <span *ngIf="doc.name == option" (click)="onSelect(doc.id,i)"><img [src]="doc.imageUrl" alt="Andrew" class="border border-light me-2 rounded-pill" height="70px" width="100px"></span>
+                            </span>
+                            {{option}}
+                        </li>
+                    </ul>
+                </mat-autocomplete> -->
+                <!-- <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+                        <span *ngFor="let doc of docsArray;let i=index">
+                                <span *ngIf="doc.name == option" (click)="onSelect(doc.id,i)"><img [src]="doc.imageUrl" alt="Andrew" class="border border-light me-2 rounded-pill" height="70px" width="100px"></span>
+                        </span>
+                        {{option}}
+                    </mat-option>
+                </mat-autocomplete> -->
+            </mat-form-field>
+        </form>
+
+        <div>
+            <ul class="list-unstyled">
+                <li class="p-1" *ngFor="let option of filteredOptions | async" [value]="option">
+                    <span *ngFor="let doc of docsArray;let i=index">
+                        <span *ngIf="doc.name == option" (click)="onSelect(doc.id,i)"><img [src]="doc.imageUrl" alt="Andrew" class="border border-light me-2 rounded-pill" height="70px" width="100px"></span>
+                    </span>
+                    {{option}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-7 text-light mx-auto ">
+        <div class="row bg-info p-2 border border-info gray-gradient shadow-lg rounded-2">
+            <div class="col-md-4 mt-3 ">
+                <img [src]="pUrl" alt="pName" class="border rounded-3 shadow gray-gradient" height="300px" width="300px">
+            </div>
+            <div class="col-md-7 mx-auto">
+                <form>
+                    <label for="name">Name</label>
+                    <input type="text" name="name" [(ngModel)]="pName" form id="name" class="form-control" [value]="pName"><br>
+
+                    <label for="date">Date</label>
+                    <input type="date" name="date" [(ngModel)]="pDate" id="date" class="form-control" [value]="pDate"><br>
+
+                    <label for="email">Email</label>
+                    <input type="email" name="email" [(ngModel)]="pEmail" id="email" class="form-control" [value]="pEmail"><br>
+
+                    <span class="form-check">
+                        <input class="form-check-input" type="radio" id="inPatient" name="status" [(ngModel)]="pStatus" value="InPatient">
+                        <label lass="form-check-label" for="inPatient" class="me-2">InPatient</label>
+                    </span>
+
+                    <span class="form-check">
+                        <input class="form-check-input" type="radio" id="outPatient" name="status" [(ngModel)]="pStatus" value="OutPatient">
+                        <label lass="form-check-label" for="outPatient">OutPatient</label>
+                    </span><br><br>
+
+                    <button class="btn btn-light btn-outline-warning" (click)="onSave(pName,pDate,pEmail,pStatus)">SAVE</button>
+                </form>
+            </div>
+
+        </div>
+        <div class="row bg-info mt-2 border border-info gray-gradient shadow-lg rounded-2">
+            <div class="col-md-12">
+                <table class="table mt-2 table-info table-responsive text-center text-success table-hover table-bordered">
+                    <thead>
+                        <tr>
+                            <th>SL NO</th>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Diagnosis</th>
+                            <th>Symptoms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let doc of docsArray;let i=index">
+                            <td class="cursor" (click)="onSelect(doc.id,i)" [ngClass]="{'active': pId == doc.id}">{{i + 1}}</td>
+                            <td class="cursor" (click)="onSelect(doc.id,i)" [ngClass]="{'active': pId == doc.id}">{{doc.date | date:'longDate' }}</td>
+                            <td class="cursor" (click)="onSelect(doc.id,i)" [ngClass]="{'active': pId == doc.id}">{{doc.name}}</td>
+                            <td class="cursor" (click)="onSelect(doc.id,i)" [ngClass]="{'active': pId == doc.id}">{{doc.email}}</td>
+                            <td class="cursor" (click)="onSelect(doc.id,i)" [ngClass]="{'active': pId == doc.id}">{{doc.diagnosis}}</td>
+                            <td class="cursor" (click)="onSelect(doc.id,i)" [ngClass]="{'active': pId == doc.id}">{{doc.symptoms}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
