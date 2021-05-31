@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ChartOptions, ChartType,ChartDataSets } from 'chart.js';
+import { Label,Color } from 'ng2-charts';
+
 
 @Component({
   selector: 'app-bart-chart',
@@ -6,19 +9,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bart-chart.component.css']
 })
 export class BartChartComponent implements OnInit {
+  public barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  public barChartLabels: Label[] = ['Circulatory', 'Digestive', 'Endocrine', 'Nervous', 'Renal', 'Respiratory'];
+  public barChartType: ChartType = 'bar';
+  public barChartLegend = true;
+  public barChartPlugins = [];
+
+  public barChartData: ChartDataSets[] = [
+    { data: [55, 55, 38, 85, 65, 52, 75, 65, 45], label: 'Inpatients' },
+    { data: [80, 90, 55, 50, 58, 65, 55, 75, 0], label: 'Outpatients' }
+  ];
+
+  public barChartColors: Color[] = [
+    { backgroundColor: 'red' },
+    { backgroundColor: 'blue' },
+  ]
+
 
   constructor() { }
-  public barChartOptions = {
-    scaleShowVerticalLines: false,
-    responsive: true
-  };
-  public barChartLabels = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  public barChartType = 'bar';
-  public barChartLegend = true;
-  public barChartData = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
-  ];
+  
+  
 
   ngOnInit(): void {
     

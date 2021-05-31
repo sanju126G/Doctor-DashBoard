@@ -3,7 +3,9 @@ import {FormControl} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import { DoctorsService } from '../doctors.service';
-// import { Chart } from 'node_modules/chart.js';
+import { ChartOptions, ChartType,ChartDataSets } from 'chart.js';
+import { Label,Color } from 'ng2-charts';
+
 
 @Component({
   selector: 'app-doctors',
@@ -56,44 +58,8 @@ export class DoctorsComponent implements OnInit {
       );
     })
     
-    // this Is Canvas Section
-    
-//     var ctx = document.getElementById('myChart').getContext('2d')
-// var myChart = new Chart(ctx, {
-//     type: 'bar',
-//     data: {
-//         labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//         datasets: [{
-//             label: '# of Votes',
-//             data: [12, 19, 3, 5, 2, 3],
-//             backgroundColor: [
-//                 'rgba(255, 99, 132, 0.2)',
-//                 'rgba(54, 162, 235, 0.2)',
-//                 'rgba(255, 206, 86, 0.2)',
-//                 'rgba(75, 192, 192, 0.2)',
-//                 'rgba(153, 102, 255, 0.2)',
-//                 'rgba(255, 159, 64, 0.2)'
-//             ],
-//             borderColor: [
-//                 'rgba(255, 99, 132, 1)',
-//                 'rgba(54, 162, 235, 1)',
-//                 'rgba(255, 206, 86, 1)',
-//                 'rgba(75, 192, 192, 1)',
-//                 'rgba(153, 102, 255, 1)',
-//                 'rgba(255, 159, 64, 1)'
-//             ],
-//             borderWidth: 1
-//         }]
-//     },
-//     options: {
-//         scales: {
-//             y: {
-//                 beginAtZero: true
-//             }
-//         }
-//     }
-// });
   }
+
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
@@ -131,6 +97,23 @@ export class DoctorsComponent implements OnInit {
 
 
 //canvas Section
-
+    // this Is Canvas Section
+    public barChartOptions: ChartOptions = {
+      responsive: true,
+    };
+    public barChartLabels: Label[] = ['Circulatory', 'Digestive', 'Endocrine', 'Nervous', 'Renal', 'Respiratory'];
+    public barChartType: ChartType = 'bar';
+    public barChartLegend = true;
+    public barChartPlugins = [];
+  
+    public barChartData: ChartDataSets[] = [
+      { data: [55, 55, 38, 85, 65, 52, 75, 65, 45], label: 'Inpatients' },
+      { data: [80, 90, 55, 50, 58, 65, 55, 75, 0], label: 'Outpatients' }
+    ];
+  
+    public barChartColors: Color[] = [
+      { backgroundColor: 'red' },
+      { backgroundColor: 'blue' },
+    ]
 
 }

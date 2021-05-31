@@ -15,14 +15,14 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { DoctorsComponent } from './doctors/doctors.component';
-// import { ChartsModule } from 'ng2-charts';
-// import { BartChartComponent } from './bart-chart/bart-chart.component';
+import { BartChartComponent } from './bart-chart/bart-chart.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
     AppComponent,
     DoctorsComponent,
-    // BartChartComponent
+    BartChartComponent
   ],
   imports: [
     BrowserModule,
@@ -38,8 +38,7 @@ import { DoctorsComponent } from './doctors/doctors.component';
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    // ChartsModule
-    
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
