@@ -11,8 +11,8 @@
     </div>
 </nav>
 
-<div class="container-fluid  mt-3 row " style="min-height: 400px;">
-    <div class="col-md-4 bg-info text-light border border-info gray-gradient shadow-lg rounded-2">
+<div class="mt-3 mx-2 row " style="min-height: 400px;">
+    <div class="col-md-2 bg-info text-light border border-info gray-gradient shadow-lg rounded-2">
         <form class="example-form">
             <mat-form-field class="example-full-width">
                 <mat-label class="text-light">Search Patients</mat-label>
@@ -58,13 +58,11 @@
             </ul>
         </div>
     </div>
-    <div class="col-md-7 text-light mx-auto ">
-        <div class="row bg-info p-2 border border-info gray-gradient shadow-lg rounded-2">
-            <div class="col-md-4 mt-3 ">
-                <img [src]="pUrl" alt="pName" class="border rounded-3 shadow gray-gradient" height="300px" width="300px">
-            </div>
-            <div class="col-md-7 mx-auto">
-                <form>
+    <div class="col-md-9 mx-2 text-light ">
+        <div class="row p-2 ">
+            <div class="col-md-4 mx-auto bg-info border border-info gray-gradient shadow-lg rounded-2 ">
+                <img [src]="pUrl" alt="pName" class=" mx-5 mt-2 border rounded-3 shadow gray-gradient" height="200px" width="250px">
+                <form class="example-form">
                     <label for="name">Name</label>
                     <input type="text" name="name" [(ngModel)]="pName" form id="name" class="form-control" [value]="pName"><br>
 
@@ -82,14 +80,19 @@
                     <span class="form-check">
                         <input class="form-check-input" type="radio" id="outPatient" name="status" [(ngModel)]="pStatus" value="OutPatient">
                         <label lass="form-check-label" for="outPatient">OutPatient</label>
-                    </span><br><br>
+                    </span><br>
 
-                    <button class="btn btn-light btn-outline-warning" (click)="onSave(pName,pDate,pEmail,pStatus)">SAVE</button>
+                    <button class="btn btn-light mb-2 btn-outline-warning" (click)="onSave(pName,pDate,pEmail,pStatus)">SAVE</button>
                 </form>
+            </div>
+            <div class="col-md-6 mx-auto mt-1 bg-primary bg-info border border-info gray-gradient shadow-lg rounded-2">
+                <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [plugins]="barChartPlugins" [chartType]="barChartType" height="200px" width="200px" [legend]="barChartLegend">
+                        </canvas>
             </div>
 
         </div>
-        <div class="row bg-info mt-2 border border-info gray-gradient shadow-lg rounded-2">
+
+        <div class="row bg-info mt-2 mx-auto border border-info gray-gradient shadow-lg rounded-2">
             <div class="col-md-12">
                 <table class="table mt-2 table-info table-responsive text-center text-success table-hover table-bordered">
                     <thead>
@@ -117,11 +120,4 @@
             </div>
         </div>
     </div>
-</div>
-<div class="container row">
-    <div class="col-md-4">
-        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [plugins]="barChartPlugins" [chartType]="barChartType" height="200px" width="200px" [legend]="barChartLegend">
-        </canvas>
-    </div>
-
 </div>
